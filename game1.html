@@ -84,8 +84,7 @@ function predictor(last_move, transition_matrix){
         find_here = transition_matrix[last_move-1];
         var maxnumber = 0;
         for (var i = 1; i < find_here.length; i++) {
-            if (find_here[i] < find_here[maxnumber])
-                maxnumber = i;
+            if (find_here[i] < find_here[maxnumber]) maxnumber = i;
         }
         return maxnumber
 }
