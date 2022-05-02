@@ -75,23 +75,23 @@ console.log(computerchose);
 function rock(){
         var url = "";
         if (computerchose == 0) url = "drawrock.html"
-        if (computerchose == 1) url = "rockpaper.html"
-        if (computerchose == 2) url = "rockscissors.html"
+        if (computerchose == 1) url = "paperrock.html"
+        if (computerchose == 2) url = "scissorsrock.html"
         window.open(url)
 }
 
 function paper(){
         var url = "";
-        if (computerchose == 0) url = "paperrock.html"
+        if (computerchose == 0) url = "rockpaper.html"
         if (computerchose == 1) url = "drawpaper.html"
-        if (computerchose == 2) url = "paperscissors.html"
+        if (computerchose == 2) url = "scissorspaper.html"
         window.open(url)
 }
 
 function scissors(){
         var url = "";
-        if (computerchose == 0) url = "scissors.html"
-        if (computerchose == 1) url = "scissorspaper.html"
+        if (computerchose == 0) url = "scissorsrock.html"
+        if (computerchose == 1) url = "paperscissors.html"
         if (computerchose == 2) url = "drawscissors.html"
         window.open(url)
 }
