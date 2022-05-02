@@ -41,15 +41,13 @@ body {background-image: url(styles/images/background.jpg)}
 <body>
 
 <div id="common">
-<h2 align="center"; id="headers" >good luck))0)0)</h2>
+        <h2 align="center"; id="headers" >good luck))0)0)</h2>
 
-<div id="left">
-        <img align="center"; id="text1" src="styles\images\too.png">
-		
-		
+        <div id="left">
+                <img align="center"; id="text1" src="styles\images\too.png">	
 	</div>
 	
-<div id="right">
+        <div id="right">
 		<img align="center"; id="text2" src="styles\images\choose.png">
 		<img id="rock2" src="styles\images\rock.png" usemap="#rock"> <map name="rock"><area onclick="rock()" shape="default"></map>
 		<img id="scissors2" src="styles\images\scissors.png" usemap="#scissors"> <map name="scissors"><area onclick="scissors()" shape="default"></map>
@@ -67,54 +65,150 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-var computerchose = getRandomInt(5);
-console.log(computerchose);       
+var last = 1;
+var last_computer = 1;
+
+var number = 0;    
+
+var local = [
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]],
+        [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
+];
+
+
+function predictor(last_move, last_computer, transition_matrix){
+        console.log(last_move, last_computer);
+        console.log(transition_matrix[last_move][last_computer]);
+        find_here = transition_matrix[last_move][last_computer];
+        
+        var maxnumber = 0;
+        for (var i = 0; i < find_here.length; i++) {
+            if (find_here[i] > find_here[maxnumber]) maxnumber = i;
+        }
+        console.log(maxnumber, "maxnum");
+        return maxnumber
+        
+}
+
+function automatic_opponent(predicted){
+        var randnum = getRandomInt(2);
+        console.log(randnum, "randnum");
+        if (predicted == 0){
+                if (randnum == 0) return 2;
+                if (randnum == 1) return 4;
+        }
+        else if (predicted == 1){
+                if (randnum == 0) return 0;
+                if (randnum == 1) return 4;
+        }
+        else if (predicted == 2){
+                if (randnum == 0) return 1;
+                if (randnum == 1) return 3;
+        }
+        else if (predicted == 3){
+                if (randnum == 0) return 1;
+                if (randnum == 1) return 0;
+        }
+        else if (predicted == 4){
+                if (randnum == 0) return 2;
+                if (randnum == 1) return 3;
+        }
+        
+}
+
 
 function rock(){
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         var url = "";
-        if (computerchose == 0) url = "drawrock.html"
-        if (computerchose == 1) url = "paperrock.html"
-        if (computerchose == 2) url = "scissorsrock.html"
-	if (computerchose == 3) url = "lizardrock.html"
-	if (computerchose == 4) url = "spockrock.html"
-        window.open(url)
+        if (computerchoice == 0) url = "drawrock.html"
+        if (computerchoice == 1) url = "scissorsrock.html"
+        if (computerchoice == 2) url = "paperrock.html"
+	if (computerchoice == 3) url = "lizardrock.html"
+	if (computerchoice == 4) url = "spockrock.html"
+
+        local[last][last_computer][0] = local[last][last_computer][0]+1;
+	
+	number = number + 1;
+        last = 0;
+        last_computer = computerchoice;
+        window.open(url);
 }
 
-function paper(){
-        var url = "";
-        if (computerchose == 0) url = "rockpaper.html"
-        if (computerchose == 1) url = "drawpaper.html"
-        if (computerchose == 2) url = "scissorspaper.html"
-	if (computerchose == 3) url = "lizardpaper.html"
-	if (computerchose == 4) url = "spockpaper.html"
-        window.open(url)
-}
 function scissors(){
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         var url = "";
-        if (computerchose == 0) url = "rockscissors.html"
-        if (computerchose == 1) url = "paperscissors.html"
-        if (computerchose == 2) url = "drawscissors.html"
-	if (computerchose == 3) url = "lizardscissors.html"
-	if (computerchose == 4) url = "spockscissors.html"
-        window.open(url)
+        if (computerchoice == 0) url = "rockscissors.html"
+        if (computerchoice == 1) url = "drawscissors.html"
+        if (computerchoice == 2) url = "paperscissors.html"
+	if (computerchoice == 3) url = "lizardscissors.html"
+	if (computerchoice == 4) url = "spockscissors.html"
+        
+        local[last][last_computer][1] = local[last][last_computer][1]+1;
+	
+	number = number + 1;
+        last = 1;
+        last_computer = computerchoice;
+        window.open(url);
 }
+
+
+function paper(){
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
+        var url = "";
+        if (computerchoice == 0) url = "rockpaper.html"
+        if (computerchoice == 1) url = "scissorspaper.html"
+        if (computerchoice == 2) url = "drawpaper.html"
+	if (computerchoice == 3) url = "lizardpaper.html"
+	if (computerchoice == 4) url = "spockpaper.html"
+        
+        local[last][last_computer][2] = local[last][last_computer][2]+1;
+	
+	number = number + 1;
+        last = 2;
+        last_computer = computerchoice;
+        window.open(url);
+}
+
 function lizard(){
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         var url = "";
-        if (computerchose == 0) url = "rocklizard.html"
-        if (computerchose == 1) url = "paperlizard.html"
-        if (computerchose == 2) url = "scissorslizard.html"
-	if (computerchose == 3) url = "drawlizard.html"
-	if (computerchose == 4) url = "spocklizard.html"
-        window.open(url)
+        if (computerchoice == 0) url = "rocklizard.html"
+        if (computerchoice == 1) url = "scissorslizard.html"
+        if (computerchoice == 2) url = "paperlizard.html"
+	if (computerchoice == 3) url = "drawlizard.html"
+	if (computerchoice == 4) url = "spocklizard.html"
+        
+        local[last][last_computer][3] = local[last][last_computer][3]+1;
+	
+	number = number + 1;
+        last = 3;
+        last_computer = computerchoice;
+        window.open(url);
 }
+
 function spock(){
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         var url = "";
-        if (computerchose == 0) url = "rockspock.html"
-        if (computerchose == 1) url = "paperspock.html"
-        if (computerchose == 2) url = "scissorsspock.html"
-	if (computerchose == 3) url = "lizardspock.html"
-	if (computerchose == 4) url = "drawspock.html"
-        window.open(url)
+        if (computerchoice == 0) url = "rockspock.html"
+        if (computerchoice == 1) url = "scissorsspock.html"
+        if (computerchoice == 2) url = "paperspock.html"
+	if (computerchoice == 3) url = "lizardspock.html"
+	if (computerchoice == 4) url = "drawspock.html"
+        
+        local[last][last_computer][4] = local[last][last_computer][4]+1;
+	
+	number = number + 1;
+        last = 4;
+        last_computer = computerchoice;
+        window.open(url);
 }
 
 
@@ -123,3 +217,4 @@ function spock(){
 
 </body>
 </html>
+
