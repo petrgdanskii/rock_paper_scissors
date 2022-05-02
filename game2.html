@@ -36,11 +36,7 @@ body {background-image: url(styles/images/background.jpg)}
 
 
 </style>
-<script>
 
-
-
-</script>
 </head>
 <body>
 
@@ -67,7 +63,64 @@ body {background-image: url(styles/images/background.jpg)}
 </div>
 
 
+<script>
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+var computerchose = getRandomInt(5);
+console.log(computerchose);       
+
+function rock(){
+        var url = "";
+        if (computerchose == 0) url = "drawrock.html"
+        if (computerchose == 1) url = "rockpaper.html"
+        if (computerchose == 2) url = "rockscissors.html"
+	if (computerchose == 3) url = "rocklizard.html"
+	if (computerchose == 4) url = "rockspock.html"
+        window.open(url)
+}
+
+function paper(){
+        var url = "";
+        if (computerchose == 0) url = "paperrock.html"
+        if (computerchose == 1) url = "drawpaper.html"
+        if (computerchose == 2) url = "paperscissors.html"
+	if (computerchose == 3) url = "paperlizard.html"
+	if (computerchose == 4) url = "paperspock.html"
+        window.open(url)
+}
+function scissors(){
+        var url = "";
+        if (computerchose == 0) url = "scissorsrock.html"
+        if (computerchose == 1) url = "scissorspaper.html"
+        if (computerchose == 2) url = "drawscissors.html"
+	if (computerchose == 3) url = "scissorslizard.html"
+	if (computerchose == 4) url = "scissorsspock.html"
+        window.open(url)
+}
+function lizard(){
+        var url = "";
+        if (computerchose == 0) url = "lizardrock.html"
+        if (computerchose == 1) url = "lizardpaper.html"
+        if (computerchose == 2) url = "lizardscissors.html"
+	if (computerchose == 3) url = "drawlizard.html"
+	if (computerchose == 4) url = "lizardspock.html"
+        window.open(url)
+}
+function spock(){
+        var url = "";
+        if (computerchose == 0) url = "spockrock.html"
+        if (computerchose == 1) url = "spockpaper.html"
+        if (computerchose == 2) url = "spockscissors.html"
+	if (computerchose == 3) url = "spocklizard.html"
+	if (computerchose == 4) url = "drawspock.html"
+        window.open(url)
+}
+
+
+</script>
 
 
 </body>
