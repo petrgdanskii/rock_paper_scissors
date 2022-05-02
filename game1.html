@@ -69,6 +69,16 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+var last = 5
+
+var number = 0
+
+var local = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+]
+
 var computerchose = getRandomInt(3);
 console.log(computerchose);       
 
@@ -77,6 +87,15 @@ function rock(){
         if (computerchose == 0) url = "drawrock.html"
         if (computerchose == 1) url = "paperrock.html"
         if (computerchose == 2) url = "scissorsrock.html"
+	
+	if (last == 0) local[0][0] = local[0][0]+1
+        if (last == 1) local[1][0] = local[1][0]+1
+        if (last == 2) local[2][0] = local[2][0]+1
+	
+	last = 0
+	
+	number = number + 1
+	
         window.open(url)
 }
 
@@ -85,6 +104,15 @@ function paper(){
         if (computerchose == 0) url = "rockpaper.html"
         if (computerchose == 1) url = "drawpaper.html"
         if (computerchose == 2) url = "scissorspaper.html"
+	
+        if (last == 0) local[0][0] = local[0][0]+1
+        if (last == 1) local[1][0] = local[1][0]+1
+        if (last == 2) local[2][0] = local[2][0]+1
+	
+	last = 1
+	
+	number = number + 1
+	
         window.open(url)
 }
 
@@ -93,6 +121,15 @@ function scissors(){
         if (computerchose == 0) url = "rockscissors.html"
         if (computerchose == 1) url = "paperscissors.html"
         if (computerchose == 2) url = "drawscissors.html"
+	
+        if (last == 0) local[0][0] = local[0][0]+1
+        if (last == 1) local[1][0] = local[1][0]+1
+        if (last == 2) local[2][0] = local[2][0]+1
+	
+	last = 2
+	
+	number = number + 1
+	
         window.open(url)
 }
 
