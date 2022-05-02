@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>rock paper scissors</title>
-<link rel="shortcut icon" href="lizard.ico" type="image/x-icon">
 <style>
 @font-face {
     font-family: "bennieb"; /* Гарнитура шрифта */
@@ -71,18 +70,22 @@ function getRandomInt(max) {
 }
 
 var last = 1;
+var last_computer = 1;
 
 var number = 0;
 
+
 var local = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
+        [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+        [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 ];
 
-function predictor(last_move, transition_matrix){
-        console.log(transition_matrix[last_move]);
-        find_here = transition_matrix[last_move];
+
+
+function predictor(last_move, last_computer, transition_matrix){
+        console.log(transition_matrix[last_move][last_computer]);
+        find_here = transition_matrix[last_move][last_computer];
         
         var maxnumber = 0;
         for (var i = 0; i < find_here.length; i++) {
@@ -106,7 +109,9 @@ function automatic_opponent(predicted){
       
 
 function rock(){
-        predicted = predictor(last, local);
+        
+
+        predicted = predictor(last, last_computer, local);
         var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are here"); 
@@ -118,18 +123,19 @@ function rock(){
         if (computerchoice == 2) url = "paperrock.html";
         if (computerchoice == 2) console.log(computerchoice, "computerchoice", "you are here2"); 
 	
-	if (last == 0) local[0][0] = local[0][0]+1;
-        if (last == 1) local[1][0] = local[1][0]+1;
-        if (last == 2) local[2][0] = local[2][0]+1;
+	local[last][last_computer][0] = local[last][last_computer][0]+1;
 	
 	number = number + 1;
         last = 0;
+        last_computer = computerchoice;
 	console.log(url);
         window.open(url);
 }
 
 function scissors(){
-        predicted = predictor(last, local);
+        
+
+        predicted = predictor(last, last_computer, local);
         var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are scissors"); 
@@ -138,19 +144,21 @@ function scissors(){
         if (computerchoice == 1) url = "drawscissors.html";
         if (computerchoice == 2) url = "paperscissors.html";
 	
-        if (last == 0) local[0][1] = local[0][1]+1;
-        if (last == 1) local[1][1] = local[1][1]+1;
-        if (last == 2) local[2][1] = local[2][1]+1;
+        
+        local[last][last_computer][1] = local[last][last_computer][1]+1;
 	
 	
 	
 	number = number + 1; 
-        last = 2;
+        last = 1;
+        last_computer = computerchoice;
         window.open(url);
 }
 
 function paper(computerchoice){
-        predicted = predictor(last, local);
+        
+
+        predicted = predictor(last, last_computer, local);
         var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are paper"); 
@@ -161,14 +169,12 @@ function paper(computerchoice){
         if (computerchoice == 1) console.log(computerchoice, "aaaa");  
         if (computerchoice == 2) url = "drawpaper.html";
 	
-        if (last == 0) local[0][2] = local[0][2]+1;
-        if (last == 1) local[1][2] = local[1][2]+1;
-        if (last == 2) local[2][2] = local[2][2]+1;
-	
+        local[last][last_computer][2] = local[last][last_computer][2]+1;
 	
 	
 	number = number + 1;
-        last = 1;
+        last = 2;
+        last_computer = computerchoice;
         window.open(url);
 }
 
