@@ -69,68 +69,92 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-var last = 5
+var last = 5;
 
-var number = 0
+var number = 0;
 
 var local = [
         [0, 0, 0],
         [0, 0, 0],
         [0, 0, 0]
-]
+];
 
-var computerchose = getRandomInt(3);
+function predictor(last_move, transition_matrix){
+        console.log(last_move, transition_matrix);
+        find_here = transition_matrix[last_move-1];
+        var maxnumber = 0;
+        for (var i = 1; i < find_here.length; i++) {
+            if (find_here[i] < find_here[maxnumber])
+                maxnumber = i;
+        }
+        return maxnumber
+}
+
+function automatic_opponent(predicted){
+        if (predicted == 0){
+                return 3;
+        }
+        else{
+                return predicted;
+        }
+}
+
+var computerchose = automatic_opponent(predictor(last, local));
 console.log(computerchose);       
 
 function rock(){
         var url = "";
-        if (computerchose == 0) url = "drawrock.html"
-        if (computerchose == 1) url = "paperrock.html"
-        if (computerchose == 2) url = "scissorsrock.html"
+        if (computerchose == 0) url = "drawrock.html";
+        if (computerchose == 1) url = "paperrock.html";
+        if (computerchose == 2) url = "scissorsrock.html";
 	
-	if (last == 0) local[0][0] = local[0][0]+1
-        if (last == 1) local[1][0] = local[1][0]+1
-        if (last == 2) local[2][0] = local[2][0]+1
+	if (last == 0) local[0][0] = local[0][0]+1;
+        if (last == 1) local[1][0] = local[1][0]+1;
+        if (last == 2) local[2][0] = local[2][0]+1;
 	
-	last = 0
-	
-	number = number + 1
-	var computerchose = getRandomInt(3);
-        window.open(url)
+	number = number + 1;
+	var computerchose = automatic_opponent(predictor(last, local));
+        console.log(computerchose); 
+        last = 0;
+        window.open(url);
 }
 
 function paper(){
         var url = "";
-        if (computerchose == 0) url = "rockpaper.html"
-        if (computerchose == 1) url = "drawpaper.html"
-        if (computerchose == 2) url = "scissorspaper.html"
+        if (computerchose == 0) url = "rockpaper.html";
+        if (computerchose == 1) url = "drawpaper.html";
+        if (computerchose == 2) url = "scissorspaper.html";
 	
-        if (last == 0) local[0][0] = local[0][0]+1
-        if (last == 1) local[1][0] = local[1][0]+1
-        if (last == 2) local[2][0] = local[2][0]+1
+        if (last == 0) local[0][1] = local[0][1]+1;
+        if (last == 1) local[1][1] = local[1][1]+1;
+        if (last == 2) local[2][1] = local[2][1]+1;
 	
-	last = 1
 	
-	number = number + 1
-	var computerchose = getRandomInt(3);
-        window.open(url)
+	
+	number = number + 1;
+	var computerchose = automatic_opponent(predictor(last, local));
+        console.log(computerchose);  
+        last = 1;
+        window.open(url);
 }
 
 function scissors(){
         var url = "";
-        if (computerchose == 0) url = "rockscissors.html"
-        if (computerchose == 1) url = "paperscissors.html"
-        if (computerchose == 2) url = "drawscissors.html"
+        if (computerchose == 0) url = "rockscissors.html";
+        if (computerchose == 1) url = "paperscissors.html";
+        if (computerchose == 2) url = "drawscissors.html";
 	
-        if (last == 0) local[0][0] = local[0][0]+1
-        if (last == 1) local[1][0] = local[1][0]+1
-        if (last == 2) local[2][0] = local[2][0]+1
+        if (last == 0) local[0][2] = local[0][2]+1;
+        if (last == 1) local[1][2] = local[1][2]+1;
+        if (last == 2) local[2][2] = local[2][2]+1;
 	
-	last = 2
 	
-	number = number + 1
-	var computerchose = getRandomInt(3);
-        window.open(url)
+	
+	number = number + 1;
+	var computerchose = automatic_opponent(predictor(last, local));
+        console.log(computerchose);  
+        last = 2;
+        window.open(url);
 }
 
 </script>
