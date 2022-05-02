@@ -18,7 +18,7 @@ body {background-image: url(styles/images/background.jpg)}
 #right { position: absolute; right: 0; top: 0; width: 50%; height: 100% }
 
 #headers {color:#ffffff; position:absolute; top: 12%; margin-top: -1.5%; left: 50%; margin-left: -9%; width: 18%}
-#text1 {position:absolute; top: 45%; margin-top: -1.5%; left: 46%; margin-left: -9%; width: 18%}
+#text1 {position:absolute; top: 30%; margin-top: -1.5%; left: 46%; margin-left: -9%; width: 18%}
 #text2 {position:absolute; top: 46%; margin-top: 0.8; left: 55.5%; margin-left: -4.5%; width: 9%}
 
 
@@ -36,11 +36,7 @@ body {background-image: url(styles/images/background.jpg)}
 
 
 </style>
-<script>
 
-
-
-</script>
 </head>
 <body>
 
@@ -50,21 +46,57 @@ body {background-image: url(styles/images/background.jpg)}
         <div id="left">
                 <img align="center"; id="text1" src="styles\images\too.png">
 		
+                <>
+
 		
 	</div>
 	
         <div id="right">
 		<img align="center"; id="text2" src="styles\images\choose.png">
-		<img id="rock1" src="styles\images\rock.png">
-		<img id="scissors1" src="styles\images\scissors.png">
-		<img id="paper1" src="styles\images\paper.png">
+		<img id="rock1" src="styles\images\rock.png" usemap="#rock"> <map name="rock"><area onclick="rock()" shape="default"></map>
+		<img id="scissors1" src="styles\images\scissors.png" usemap="#scissors"> <map name="scissors"><area onclick="scissors()" shape="default"></map>
+		<img id="paper1" src="styles\images\paper.png" usemap="#paper"> <map name="paper"><area onclick="paper()" shape="default"></map>
 	
 	</div>
+
+
+
 </div>
 
+<script>
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
+var computerchose = getRandomInt(3);
+console.log(computerchose);       
 
+function rock(){
+        var url = "";
+        if (computerchose == 0) url = "drawrock.html"
+        if (computerchose == 1) url = "paperrock - копия.html"
+        if (computerchose == 2) url = "rockscissors.html"
+        window.open(url)
+}
+
+function paper(){
+        var url = "";
+        if (computerchose == 0) url = "paperrock.html"
+        if (computerchose == 1) url = "drawpaper.html"
+        if (computerchose == 2) url = "scissorspaper-копия.html"
+        window.open(url)
+}
+
+function scissors(){
+        var url = "";
+        if (computerchose == 0) url = "rockscissors-копия.html"
+        if (computerchose == 1) url = "scissorspaper.html"
+        if (computerchose == 2) url = "sdrawscissors.html"
+        window.open(url)
+}
+
+</script>
 
 </body>
 </html>
