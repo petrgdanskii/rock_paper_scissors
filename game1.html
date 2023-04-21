@@ -110,9 +110,8 @@ function random_opponent(){
 function rock(){
         
 
-        //predicted = predictor(last, last_computer, local);
-        // var computerchoice = automatic_opponent(predicted);
-	var computerchoice = random_opponent();
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are here"); 
         var url = "";
@@ -135,9 +134,8 @@ function rock(){
 function scissors(){
         
 
-        //predicted = predictor(last, last_computer, local);
-        // var computerchoice = automatic_opponent(predicted);
-	var computerchoice = random_opponent();
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are scissors"); 
         var url = "";
@@ -159,9 +157,8 @@ function scissors(){
 function paper(computerchoice){
         
 
-        // predicted = predictor(last, last_computer, local);
-        // var computerchoice = automatic_opponent(predicted);
-	var computerchoice = random_opponent();
+        predicted = predictor(last, last_computer, local);
+        var computerchoice = automatic_opponent(predicted);
         console.log(computerchoice, "computerchoice", "aa");
         console.log("help!!! you are paper"); 
         console.log(computerchoice, "computerchoice"); 
